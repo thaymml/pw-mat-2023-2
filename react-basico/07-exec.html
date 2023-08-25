@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* Estilo para o texto em uma cor */
+        .cor-1 {
+            border-radius: 8px;
+            border: 3px solid lightblue;
+            text-align: left;
+            background-color: pink;
+        }
+        /* Estilo para o texto em outra cor */
+        .cor-2 {
+            border-radius: 8px;
+            border: 3px solid lightblue;
+            text-align: left;
+            background-color: pink;
+        }
+        .div {
+            border-radius: 8px;
+            border: 3px solid lightblue;
+            border-radius: 8px;
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <div id="root"></div>
+    <script type="text/babel">
+        // Declaração da função de componente em JavaScript
+        function PersonalInfo(props) {
+            const { nome, sobrenome, dia, mes, ano } = props;
+            // Cálculo da idade
+            const idade = 2023 - ano;
+            return (
+                <div>
+                    {/* Fragment */}
+                    <>
+                        {/* Primeiro parágrafo com a cor 1 */}
+                        <p className="cor-1">{nome} {sobrenome}</p>
+                        {/* Segundo parágrafo com a cor 2 */}
+                        <p className="cor-2">{dia}/{mes}/{ano}</p>
+                    </>
+                    {/* Div para exibir a idade */}
+                    <div className="div"> 
+                        Idade ao final do ano: {idade} anos
+                    </div>
+                </div>
+            );
+        }
+        // Dados de exemplo para o componente
+        const dadosExemplo = {
+            nome: "Thayssa",
+            sobrenome: "Lima",
+            dia: 24,
+            mes: 6,
+            ano: 2004
+        };
+        // Renderização do componente
+        const root = document.getElementById("root");
+        ReactDOM.render(<PersonalInfo {...dadosExemplo} />, root);
+    </script>
+</body>
+</html>
