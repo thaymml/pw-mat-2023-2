@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Moeda</title>
+  </head>
+
+<body>
+     <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+       function ConversorMoeda() {
+         // Criação  dos refs
+         const valorRef = React.useRef(null);
+         const cotacaoRef = React.useRef(null);
+         const resultadoRef = React.useRef(null);
+
+            // Função para atualizar o resultado
+              function handleChange() {
+                 const valorEmReais = parseFloat(valorRef.current.value);
+                 const cotacaoDolar = parseFloat(cotacaoRef.current.value);
+
+ 
+
+                 // Verifica se os valores são válidos
+                  if (!isNaN(valorEmReais) && !isNaN(cotacaoDolar)) {
+                     const valorConvertido = valorEmReais / cotacaoDolar;
+                     resultadoRef.current.innerText = `Valor em dólares: $${valorConvertido.toFixed(2)}`;
+                    } else {
+                      resultadoRef.current.innerText = "Digite valores válidos";
+                    }
+                }
+
+               return (
+                  <div>
+                  <label>Valor em reais</label>
+                  <input type="number" ref={valorRef} onChange={handleChange} />
+
+                  <br />
+
+                  <label>Cotação do dólar</label>
+                  <input type="number" ref={cotacaoRef} onChange={handleChange} />
+
+                  <div ref={resultadoRef}></div>
+                  </div>
+                );
+            }
+ 
+    // Renderizando o componente
+    const root = document.getElementById("root");
+    ReactDOM.render(<ConversorMoeda />, root);
+  </script>
+
+</body>
+</html>
