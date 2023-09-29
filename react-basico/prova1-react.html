@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cálculo de Índice de Massa Corporal (IMC)</title>
+  <link rel="stylesheet" href="08.css">
+</head>
+<body>
+
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  
+  <div id="root"></div>
+
+  <script type="text/babel">
+
+    function Formulario (){
+        const pesoRef = React.useRef()
+        const alturaRef = React.useRef()
+        const resultRef = React.useRef()
+        // const imcRef = React.useRef()
+    
+          function handleChange(){
+            let peso = Number(pesoRef.value)
+            let altura = Number(alturaRef.value)
+
+            let imc = ((peso / altura) ** 2)
+          
+            // Mostrar o resultado
+            resultRef.current.textContent = imc.toLocalString(
+            'pt-br', { minimumFractionDigits: 4, maximunFractionDigits: 4}
+          )}  
+        
+       return (
+        <>
+         <h1> Cálculo do Índice de Massa Corporal</h1>
+           <form>
+              <div>
+                 <label>
+                     <span>Peso</span><br/>
+                     <input ref = {pesoRef} onChange={handleChange} type="number" />
+                 </label>
+                </div>
+                <div>
+                  <label>
+                      <span>Altura</span><br/>
+                      <input ref={alturaRef} onChange={handleChange} type="number" />
+                  </label>
+                </div>
+                <div ref ={resultref}></div> 
+            </form>
+        </>    
+       )        
+      } 
+    const root = ReactDOM.createRoot(document.getElementById('root'))
+    root.render(<Formulario />)
+    // document.getElementById('peso').addEventListener('keyup',
+    // onChange)
+    // document.getElementById('altura').addEventListener('keyup',
+    // onChange)
+   </script>
+</body>
+</html>    
